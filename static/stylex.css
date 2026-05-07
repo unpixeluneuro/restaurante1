@@ -111,13 +111,6 @@ nav.scrolled {
 }
 .nav-cta::after { display: none !important; }
 
-/* ── Nav overlay (fondo oscuro al abrir menu) ── */
-.nav-overlay {
-  display: none;
-  position: fixed; inset: 0; z-index: 298;
-  background: rgba(0,0,0,.8);
-}
-.nav-overlay.active { display: block; }
 .nav-overlay.active { display: block; }
 
 /* ── Hamburger ── */
@@ -125,7 +118,7 @@ nav.scrolled {
   display: none;
   flex-direction: column; gap: 5px;
   background: none; border: none; cursor: pointer;
-  padding: .4rem; z-index: 301;
+  padding: .4rem; z-index: 300;
 }
 .hamburger span {
   display: block; width: 24px; height: 2px;
@@ -1105,27 +1098,30 @@ footer {
   nav.scrolled { padding: .7rem 1.2rem; }
   .nav-logo { font-size: 1.1rem; }
 
-  /* Menu lateral hamburguesa */
+  /* Menu pantalla completa */
   .nav-links {
-    display: flex; flex-direction: column;
-    position: fixed; top: 0; right: -100%; bottom: 0;
-    width: 72%; max-width: 270px;
-    background: #0d0a10;
-    border-left: 2px solid rgba(224,168,48,.3);
-    padding: 5rem 1.8rem 2rem;
-    gap: 0; transition: right .35s cubic-bezier(.23,1,.32,1);
-    z-index: 300;
-    box-shadow: -8px 0 40px rgba(0,0,0,.8);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    position: fixed; inset: 0;
+    background: #09060c;
+    padding: 2rem;
+    gap: 0;
+    opacity: 0; pointer-events: none;
+    transition: opacity .3s;
+    z-index: 299;
   }
-  .nav-links.open { right: 0; }
-  .nav-links li { border-bottom: 1px solid rgba(255,255,255,.06); }
+  .nav-links.open { opacity: 1; pointer-events: all; }
+  .nav-links li { width: 100%; text-align: center; border-bottom: 1px solid rgba(255,255,255,.07); }
   .nav-links a {
-    display: block; padding: 1rem 0;
-    font-size: .88rem; letter-spacing: .1em;
+    display: block; padding: 1.2rem 0;
+    font-size: 1.1rem; letter-spacing: .14em;
+    color: var(--text-light);
   }
+  .nav-links a.active { color: var(--gold); }
   .nav-links .nav-cta {
-    display: block; margin-top: 1.5rem; text-align: center;
-    padding: .9rem 1rem !important; border-radius: 50px;
+    display: block; margin-top: 2rem;
+    padding: .9rem 2.5rem !important;
+    border-radius: 50px; border: 1px solid var(--gold);
+    color: var(--gold) !important;
   }
 
   /* Sections */
