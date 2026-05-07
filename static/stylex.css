@@ -111,6 +111,14 @@ nav.scrolled {
 }
 .nav-cta::after { display: none !important; }
 
+/* ── Nav overlay (fondo oscuro al abrir menu) ── */
+.nav-overlay {
+  display: none;
+  position: fixed; inset: 0; z-index: 140;
+  background: rgba(0,0,0,.75);
+}
+.nav-overlay.active { display: block; }
+
 /* ── Hamburger ── */
 .hamburger {
   display: none;
