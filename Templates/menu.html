@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}Menu — La Brasa Dorada{% endblock %}
+
+{% block content %}
+
+<section id="menu" style="padding-top: 8rem;">
+  <div class="menu-header">
+    <p class="section-tag reveal">Nuestra propuesta</p>
+    <h2 class="section-title reveal">Menu de <em>temporada</em></h2>
+    <p class="section-lead reveal">Pasa el cursor sobre cada plato para descubrir los detalles.</p>
+
+    <div class="menu-tabs reveal">
+      <button class="tab-btn active" onclick="filtrar(event,'todos')">Todos</button>
+      <button class="tab-btn" onclick="filtrar(event,'entrante')">Entrantes</button>
+      <button class="tab-btn" onclick="filtrar(event,'principal')">Principales</button>
+      <button class="tab-btn" onclick="filtrar(event,'postre')">Postres</button>
+      <button class="tab-btn" onclick="filtrar(event,'bebida')">Bebidas</button>
+    </div>
+  </div>
+
+  <div class="menu-grid" id="menuGrid">
+    {% for p in platos %}
+    <div class="menu-card" data-cat="{{ p.categoria }}">
+      <div class="menu-card-inner">
+
+        <!-- FRENTE -->
+        <div class="menu-front">
+          <img class="menu-front-img" src="{{ p.imagen }}" alt="{{ p.nombre }}" loading="lazy">
+          <div class="menu-front-body">
+            <div class="menu-cat-tag">{{ p.categoria }}</div>
+            <div class="menu-front-name">{{ p.nombre }}</div>
+            <div class="menu-front-desc">{{ p.descripcion }}</div>
+          </div>
+          <div class="menu-front-footer">
+            <div class="menu-price">{{ p.precio }}</div>
+            <div class="flip-hint">&#8635; ver detalle</div>
+          </div>
+        </div>
+
+        <!-- DORSO -->
+        <div class="menu-back">
+          <div class="menu-back-ornament">&#10022;</div>
+          <div class="menu-back-name">{{ p.nombre }}</div>
+          <div class="menu-back-detail">{{ p.detalle }}</div>
+          <div class="menu-back-price">{{ p.precio }}</div>
+          <div class="menu-back-allergens">{{ p.alergenos }}</div>
+        </div>
+
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<script>
+  function filtrar(e, cat) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    e.target.classList.add('active');
+    document.querySelectorAll('.menu-card').forEach(card => {
+      card.style.display = (cat === 'todos' || card.dataset.cat === cat) ? '' : 'none';
+    });
+  }
+</script>
+
+{% endblock %}
