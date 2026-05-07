@@ -10,14 +10,37 @@
 </head>
 <body>
 
+  <div class="mobile-overlay" id="mobileOverlay" onclick="cerrarMenu()"></div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" onclick="cerrarMenu()">&#10005;</button>
+
+    <div class="mobile-menu-section">
+      <p class="mobile-menu-label">Restaurante</p>
+      <a href="{{ url_for('index') }}"   class="{{ 'active' if active == 'inicio' }}" onclick="cerrarMenu()">Inicio</a>
+      <a href="{{ url_for('galeria') }}" class="{{ 'active' if active == 'galeria' }}" onclick="cerrarMenu()">Galeria</a>
+    </div>
+
+    <div class="mobile-menu-section">
+      <p class="mobile-menu-label">Carta</p>
+      <a href="{{ url_for('menu') }}" class="{{ 'active' if active == 'menu' }}" onclick="cerrarMenu()">Menu</a>
+    </div>
+
+    <div class="mobile-menu-section">
+      <p class="mobile-menu-label">Visita</p>
+      <a href="{{ url_for('reservas') }}" class="{{ 'active' if active == 'reservas' }}" onclick="cerrarMenu()">Reservas</a>
+      <a href="{{ url_for('contacto') }}" class="{{ 'active' if active == 'contacto' }}" onclick="cerrarMenu()">Contacto</a>
+    </div>
+  </div>
+
   <nav id="navbar">
     <div class="nav-logo">La Brasa Dorada</div>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="{{ url_for('index') }}"    class="{{ 'active' if active == 'inicio' }}" onclick="cerrarMenu()">Inicio</a></li>
-      <li><a href="{{ url_for('menu') }}"     class="{{ 'active' if active == 'menu' }}"   onclick="cerrarMenu()">Menu</a></li>
-      <li><a href="{{ url_for('galeria') }}"  class="{{ 'active' if active == 'galeria' }}" onclick="cerrarMenu()">Galeria</a></li>
-      <li><a href="{{ url_for('contacto') }}" class="{{ 'active' if active == 'contacto' }}" onclick="cerrarMenu()">Contacto</a></li>
-      <li><a href="{{ url_for('reservas') }}" class="nav-cta" onclick="cerrarMenu()">Reservar</a></li>
+    <ul class="nav-links">
+      <li><a href="{{ url_for('index') }}"    class="{{ 'active' if active == 'inicio' }}">Inicio</a></li>
+      <li><a href="{{ url_for('menu') }}"     class="{{ 'active' if active == 'menu' }}">Menu</a></li>
+      <li><a href="{{ url_for('galeria') }}"  class="{{ 'active' if active == 'galeria' }}">Galeria</a></li>
+      <li><a href="{{ url_for('contacto') }}" class="{{ 'active' if active == 'contacto' }}">Contacto</a></li>
+      <li><a href="{{ url_for('reservas') }}" class="nav-cta">Reservar</a></li>
     </ul>
     <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
       <span></span><span></span><span></span>
@@ -54,13 +77,15 @@
 
     /* Hamburger menu */
     function toggleMenu() {
-      const abierto = document.getElementById('navLinks').classList.toggle('open');
+      const abierto = document.getElementById('mobileMenu').classList.toggle('open');
       document.getElementById('hamburger').classList.toggle('active');
+      document.getElementById('mobileOverlay').classList.toggle('active', abierto);
       document.body.style.overflow = abierto ? 'hidden' : '';
     }
     function cerrarMenu() {
-      document.getElementById('navLinks').classList.remove('open');
+      document.getElementById('mobileMenu').classList.remove('open');
       document.getElementById('hamburger').classList.remove('active');
+      document.getElementById('mobileOverlay').classList.remove('active');
       document.body.style.overflow = '';
     }
 
