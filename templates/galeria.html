@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Galeria — La Brasa Dorada{% endblock %}
+
+{% block content %}
+
+<section id="galeria" style="padding-top: 8rem;">
+  <p class="section-tag reveal">Instantes</p>
+  <h2 class="section-title reveal">Nuestra <em>galeria</em></h2>
+  <p class="section-lead reveal" style="margin-bottom:3rem;">
+    Momentos capturados en sala, cocina y mesa.
+  </p>
+
+  <div class="gallery-masonry reveal">
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=900&q=85" alt="Plato estrella">
+      <div class="gallery-overlay"><div class="gallery-caption">Plato de temporada</div></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80" alt="Sala">
+      <div class="gallery-overlay"><div class="gallery-caption">Nuestra sala</div></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?w=600&q=80" alt="Postre">
+      <div class="gallery-overlay"><div class="gallery-caption">Postre de autor</div></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=600&q=80" alt="Brasa">
+      <div class="gallery-overlay"><div class="gallery-caption">A la brasa</div></div>
+    </div>
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=600&q=80" alt="Vinos">
+      <div class="gallery-overlay"><div class="gallery-caption">Seleccion de vinos</div></div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

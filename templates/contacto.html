@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block title %}Contacto — La Brasa Dorada{% endblock %}
+
+{% block content %}
+
+<section id="contacto" style="padding-top: 8rem;">
+  <p class="section-tag reveal">Hablemos</p>
+  <h2 class="section-title reveal">Ponte en <em>contacto</em></h2>
+  <p class="section-lead reveal" style="margin-bottom:3rem;">
+    Eventos privados, menus especiales, prensa o colaboraciones.
+  </p>
+
+  {% if mensaje %}
+  <div class="flash reveal">{{ mensaje }}</div>
+  {% endif %}
+
+  <div class="reserva-grid">
+
+    <form method="POST" action="{{ url_for('contacto') }}" class="glass-form reveal">
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Correo electronico</label>
+        <input type="email" id="email" name="email" placeholder="tu@email.com" required>
+      </div>
+      <div class="form-group">
+        <label for="asunto">Asunto</label>
+        <select id="asunto" name="asunto">
+          <option value="evento">Evento privado</option>
+          <option value="menu">Consulta sobre menu</option>
+          <option value="prensa">Prensa / medios</option>
+          <option value="colaboracion">Colaboracion</option>
+          <option value="otro">Otro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="mensaje">Mensaje</label>
+        <textarea id="mensaje" name="mensaje" rows="5"
+          placeholder="Cuentanos en que podemos ayudarte..." required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
+        Enviar mensaje
+      </button>
+    </form>
+
+    <div class="info-panel reveal">
+      <div class="info-panel-content">
+        <h3>Encuentranos</h3>
+        <div class="info-item">
+          <div class="info-icon">&#128205;</div>
+          <div class="info-text">
+            <strong>Direccion</strong>
+            <small>Calle del Mercado 14</small>
+            <small>28012 Madrid, Espana</small>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">&#128222;</div>
+          <div class="info-text">
+            <strong>Telefono</strong>
+            <small>+34 91 234 56 78</small>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">&#9993;</div>
+          <div class="info-text">
+            <strong>Email</strong>
+            <small>hola@labrasadorada.es</small>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">&#128336;</div>
+          <div class="info-text">
+            <strong>Horario de atencion</strong>
+            <small>Lunes a viernes: 10:00&ndash;22:00</small>
+            <small>Fines de semana: 11:00&ndash;22:00</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}La Brasa Dorada{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="{{ url_for('static', filename='stylex.css') }}">
+</head>
+<body>
+
+  <nav id="navbar">
+    <div class="nav-logo">La Brasa Dorada</div>
+    <ul class="nav-links">
+      <li><a href="{{ url_for('index') }}"    class="{{ 'active' if active == 'inicio' }}">Inicio</a></li>
+      <li><a href="{{ url_for('menu') }}"     class="{{ 'active' if active == 'menu' }}">Menu</a></li>
+      <li><a href="{{ url_for('galeria') }}"  class="{{ 'active' if active == 'galeria' }}">Galeria</a></li>
+      <li><a href="{{ url_for('contacto') }}" class="{{ 'active' if active == 'contacto' }}">Contacto</a></li>
+      <li><a href="{{ url_for('reservas') }}" class="nav-cta">Reservar</a></li>
+    </ul>
+  </nav>
+
+  {% block content %}{% endblock %}
+
+  <footer>
+    <div class="footer-logo">La Brasa Dorada</div>
+    <div class="footer-copy">
+      &copy; 2026 <span>La Brasa Dorada</span>. Todos los derechos reservados.
+    </div>
+    <div class="footer-social">
+      <a href="#" class="social-btn" aria-label="Instagram">&#9654;</a>
+      <a href="#" class="social-btn" aria-label="Facebook">f</a>
+      <a href="#" class="social-btn" aria-label="TripAdvisor">&#9733;</a>
+    </div>
+  </footer>
+
+  <script>
+    /* Nav shrink on scroll */
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    /* Reveal on scroll */
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: .12 }
+    );
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    /* 3D tilt for cards */
+    document.querySelectorAll('.tilt-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect();
+        const x = (e.clientX - r.left) / r.width  - .5;
+        const y = (e.clientY - r.top)  / r.height - .5;
+        card.style.transform = `perspective(800px) rotateY(${x * 14}deg) rotateX(${-y * 10}deg) scale(1.03)`;
+      });
+      card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+    });
+  </script>
+
+</body>
+</html>

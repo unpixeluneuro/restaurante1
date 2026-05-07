@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block title %}La Brasa Dorada — Alta cocina mediterranea{% endblock %}
+
+{% block content %}
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Restaurante de autor &bull; Madrid &bull; Desde 1998</div>
+
+    <h1>
+      El arte de<br>
+      <em>saborear la vida</em>
+    </h1>
+
+    <div class="hero-divider">
+      <span></span>
+      <i>&#10022;</i>
+      <span></span>
+    </div>
+
+    <p class="hero-sub">
+      Cocina mediterranea de vanguardia elaborada con productos de temporada
+      y tecnicas de autor en el corazon de Madrid.
+    </p>
+
+    <div class="hero-actions">
+      <a href="{{ url_for('reservas') }}" class="btn btn-primary">Reservar mesa</a>
+      <a href="{{ url_for('menu') }}" class="btn btn-ghost">Descubrir el menu</a>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    Descubrir
+  </div>
+</section>
+
+<!-- ═══ NOSOTROS ═══ -->
+<section id="nosotros">
+  <div class="about-grid">
+
+    <div class="about-text">
+      <p class="section-tag reveal">Nuestra historia</p>
+      <h2 class="section-title reveal">
+        Pasion por la cocina<br><em>autentica</em>
+      </h2>
+      <p class="reveal">
+        Nacimos de la idea de que comer bien es un acto de cultura. Cada plato refleja
+        el territorio, la temporada y el respeto por el productor local.
+      </p>
+      <p class="reveal">
+        Nuestro chef Daniel Vega combina la tradicion mediterranea con tecnicas
+        contemporaneas para crear experiencias que perduran en la memoria.
+      </p>
+      <p class="reveal">
+        El espacio fue disenado para favorecer la conversacion: luces calidas,
+        materiales nobles y un ambiente que invita a quedarse.
+      </p>
+
+      <div class="about-stats reveal">
+        <div class="stat">
+          <div class="stat-number">28</div>
+          <div class="stat-label">Anos</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Premios</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">120</div>
+          <div class="stat-label">Comensales</div>
+        </div>
+      </div>
+
+      <div style="margin-top:2.5rem;" class="reveal">
+        <a href="{{ url_for('reservas') }}" class="btn btn-primary">Reservar mesa</a>
+      </div>
+    </div>
+
+    <div class="about-card-3d reveal">
+      <div class="about-card-inner">
+        <img
+          class="about-image"
+          src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=85"
+          alt="Sala del restaurante La Brasa Dorada"
+        >
+        <div class="about-badge">
+          <div class="about-badge-number">&#9733;</div>
+          <div class="about-badge-label">Chef recomendado</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}

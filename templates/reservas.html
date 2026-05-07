@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% block title %}Reservas — La Brasa Dorada{% endblock %}
+
+{% block content %}
+
+<section id="reservas" style="padding-top: 8rem;">
+  <p class="section-tag reveal">Tu experiencia nos importa</p>
+  <h2 class="section-title reveal">Reserva tu <em>mesa</em></h2>
+  <p class="section-lead reveal" style="margin-bottom:3rem;">
+    Confirmaremos tu reserva en menos de 24 horas.
+  </p>
+
+  {% if mensaje %}
+  <div class="flash reveal">{{ mensaje }}</div>
+  {% endif %}
+
+  <div class="reserva-grid">
+
+    <form method="POST" action="{{ url_for('reservas') }}" class="glass-form reveal">
+      <div class="form-group">
+        <label for="nombre">Nombre completo</label>
+        <input type="text" id="nombre" name="nombre" placeholder="Maria Garcia" required>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">Correo</label>
+          <input type="email" id="email" name="email" placeholder="maria@email.com" required>
+        </div>
+        <div class="form-group">
+          <label for="telefono">Telefono</label>
+          <input type="tel" id="telefono" name="telefono" placeholder="+34 600 000 000">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fecha">Fecha</label>
+          <input type="date" id="fecha" name="fecha" required>
+        </div>
+        <div class="form-group">
+          <label for="hora">Hora</label>
+          <select id="hora" name="hora">
+            <option value="13:00">13:00</option>
+            <option value="13:30">13:30</option>
+            <option value="14:00">14:00</option>
+            <option value="14:30">14:30</option>
+            <option value="20:00">20:00</option>
+            <option value="20:30">20:30</option>
+            <option value="21:00" selected>21:00</option>
+            <option value="21:30">21:30</option>
+            <option value="22:00">22:00</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="personas">Personas</label>
+        <select id="personas" name="personas">
+          <option value="1">1 persona</option>
+          <option value="2" selected>2 personas</option>
+          <option value="3">3 personas</option>
+          <option value="4">4 personas</option>
+          <option value="5">5 personas</option>
+          <option value="6">6 personas</option>
+          <option value="mas">Mas de 6 — grupos</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="notas">Notas (alergias, celebraciones...)</label>
+        <textarea id="notas" name="notas" rows="3"
+          placeholder="Sin gluten, mesa exterior, cumpleanos..."></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
+        Confirmar reserva
+      </button>
+    </form>
+
+    <div class="info-panel reveal">
+      <div class="info-panel-content">
+        <h3>Informacion practica</h3>
+        <div class="info-item">
+          <div class="info-icon">&#128336;</div>
+          <div class="info-text">
+            <strong>Horario</strong>
+            <small>Lunes a viernes: 13:00&ndash;16:00 / 20:00&ndash;23:00</small>
+            <small>Sabados y domingos: 13:00&ndash;16:30 / 20:00&ndash;23:30</small>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">&#128205;</div>
+          <div class="info-text">
+            <strong>Direccion</strong>
+            <small>Calle del Mercado 14, Madrid 28012</small>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">&#128222;</div>
+          <div class="info-text">
+            <strong>Contacto directo</strong>
+            <small>+34 91 234 56 78</small>
+            <small>hola@labrasadorada.es</small>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">&#9888;</div>
+          <div class="info-text">
+            <strong>Politica de reservas</strong>
+            <small>La mesa se mantiene 15 min. Grupos de 7 o mas: contacta directamente.</small>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}
