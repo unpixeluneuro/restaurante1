@@ -10,8 +10,6 @@
 </head>
 <body>
 
-  <div class="nav-overlay" id="navOverlay" onclick="cerrarMenu()"></div>
-
   <nav id="navbar">
     <div class="nav-logo">La Brasa Dorada</div>
     <ul class="nav-links" id="navLinks">
@@ -56,18 +54,13 @@
 
     /* Hamburger menu */
     function toggleMenu() {
-      const links   = document.getElementById('navLinks');
-      const btn     = document.getElementById('hamburger');
-      const overlay = document.getElementById('navOverlay');
-      const abierto = links.classList.toggle('open');
-      btn.classList.toggle('active');
-      overlay.classList.toggle('active', abierto);
+      const abierto = document.getElementById('navLinks').classList.toggle('open');
+      document.getElementById('hamburger').classList.toggle('active');
       document.body.style.overflow = abierto ? 'hidden' : '';
     }
     function cerrarMenu() {
       document.getElementById('navLinks').classList.remove('open');
       document.getElementById('hamburger').classList.remove('active');
-      document.getElementById('navOverlay').classList.remove('active');
       document.body.style.overflow = '';
     }
 
