@@ -12,13 +12,16 @@
 
   <nav id="navbar">
     <div class="nav-logo">La Brasa Dorada</div>
-    <ul class="nav-links">
-      <li><a href="{{ url_for('index') }}"    class="{{ 'active' if active == 'inicio' }}">Inicio</a></li>
-      <li><a href="{{ url_for('menu') }}"     class="{{ 'active' if active == 'menu' }}">Menu</a></li>
-      <li><a href="{{ url_for('galeria') }}"  class="{{ 'active' if active == 'galeria' }}">Galeria</a></li>
-      <li><a href="{{ url_for('contacto') }}" class="{{ 'active' if active == 'contacto' }}">Contacto</a></li>
-      <li><a href="{{ url_for('reservas') }}" class="nav-cta">Reservar</a></li>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="{{ url_for('index') }}"    class="{{ 'active' if active == 'inicio' }}" onclick="cerrarMenu()">Inicio</a></li>
+      <li><a href="{{ url_for('menu') }}"     class="{{ 'active' if active == 'menu' }}"   onclick="cerrarMenu()">Menu</a></li>
+      <li><a href="{{ url_for('galeria') }}"  class="{{ 'active' if active == 'galeria' }}" onclick="cerrarMenu()">Galeria</a></li>
+      <li><a href="{{ url_for('contacto') }}" class="{{ 'active' if active == 'contacto' }}" onclick="cerrarMenu()">Contacto</a></li>
+      <li><a href="{{ url_for('reservas') }}" class="nav-cta" onclick="cerrarMenu()">Reservar</a></li>
     </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 
   {% block content %}{% endblock %}
@@ -48,6 +51,18 @@
       { threshold: .12 }
     );
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    /* Hamburger menu */
+    function toggleMenu() {
+      const links = document.getElementById('navLinks');
+      const btn   = document.getElementById('hamburger');
+      links.classList.toggle('open');
+      btn.classList.toggle('active');
+    }
+    function cerrarMenu() {
+      document.getElementById('navLinks').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('active');
+    }
 
     /* 3D tilt for cards */
     document.querySelectorAll('.tilt-card').forEach(card => {
