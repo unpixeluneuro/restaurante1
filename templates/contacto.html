@@ -3,82 +3,120 @@
 
 {% block content %}
 
-<section id="contacto" style="padding-top: 8rem;">
-  <p class="section-tag reveal">Hablemos</p>
-  <h2 class="section-title reveal">Ponte en <em>contacto</em></h2>
-  <p class="section-lead reveal" style="margin-bottom:3rem;">
-    Eventos privados, menus especiales, prensa o colaboraciones.
-  </p>
+<!-- ═══ HERO CONTACTO ═══ -->
+<div class="contacto-hero">
+  <div class="contacto-hero-bg"></div>
+  <div class="contacto-hero-content">
+    <p class="section-tag reveal">Estamos aqui para ti</p>
+    <h1 class="contacto-hero-title reveal">Hablemos de algo<br><em>especial</em></h1>
+    <p class="contacto-hero-sub reveal">Eventos privados, menus a medida, prensa o colaboraciones.<br>Respondemos en menos de 24 horas.</p>
+  </div>
+</div>
+
+<!-- ═══ CONTENIDO ═══ -->
+<section id="contacto">
 
   {% if mensaje %}
   <div class="flash reveal">{{ mensaje }}</div>
   {% endif %}
 
-  <div class="reserva-grid">
+  <div class="contacto-grid">
 
-    <form method="POST" action="{{ url_for('contacto') }}" class="glass-form reveal">
-      <div class="form-group">
-        <label for="nombre">Nombre</label>
-        <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
-      </div>
-      <div class="form-group">
-        <label for="email">Correo electronico</label>
-        <input type="email" id="email" name="email" placeholder="tu@email.com" required>
-      </div>
-      <div class="form-group">
-        <label for="asunto">Asunto</label>
-        <select id="asunto" name="asunto">
-          <option value="evento">Evento privado</option>
-          <option value="menu">Consulta sobre menu</option>
-          <option value="prensa">Prensa / medios</option>
-          <option value="colaboracion">Colaboracion</option>
-          <option value="otro">Otro</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="mensaje">Mensaje</label>
-        <textarea id="mensaje" name="mensaje" rows="5"
-          placeholder="Cuentanos en que podemos ayudarte..." required></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
-        Enviar mensaje
-      </button>
-    </form>
+    <!-- Formulario -->
+    <div class="reveal">
+      <p class="section-tag" style="margin-bottom:1.5rem;">Escríbenos</p>
+      <form method="POST" action="{{ url_for('contacto') }}" class="glass-form">
 
-    <div class="info-panel reveal">
-      <div class="info-panel-content">
-        <h3>Encuentranos</h3>
-        <div class="info-item">
-          <div class="info-icon">&#128205;</div>
-          <div class="info-text">
-            <strong>Direccion</strong>
-            <small>Calle del Mercado 14</small>
-            <small>28012 Madrid, Espana</small>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Correo electronico</label>
+            <input type="email" id="email" name="email" placeholder="tu@email.com" required>
           </div>
         </div>
-        <div class="info-item">
-          <div class="info-icon">&#128222;</div>
-          <div class="info-text">
-            <strong>Telefono</strong>
-            <small>+34 91 234 56 78</small>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="telefono">Telefono</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="+34 600 000 000">
+          </div>
+          <div class="form-group">
+            <label for="personas">Numero de personas</label>
+            <select id="personas" name="personas">
+              <option value="1-2">1 - 2 personas</option>
+              <option value="3-5">3 - 5 personas</option>
+              <option value="6-10">6 - 10 personas</option>
+              <option value="11-20">11 - 20 personas</option>
+              <option value="20+">Mas de 20</option>
+            </select>
           </div>
         </div>
-        <div class="info-item">
-          <div class="info-icon">&#9993;</div>
-          <div class="info-text">
-            <strong>Email</strong>
-            <small>hola@labrasadorada.es</small>
+
+        <div class="form-group">
+          <label for="asunto">Motivo de contacto</label>
+          <select id="asunto" name="asunto">
+            <option value="evento">Evento privado</option>
+            <option value="menu">Menu especial</option>
+            <option value="prensa">Prensa / medios</option>
+            <option value="colaboracion">Colaboracion</option>
+            <option value="otro">Otro</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" rows="4"
+            placeholder="Cuentanos tu idea, fecha, numero de personas o cualquier detalle..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
+          Enviar mensaje
+        </button>
+
+      </form>
+    </div>
+
+    <!-- Panel derecho -->
+    <div class="contacto-aside reveal">
+
+      <!-- Mapa placeholder -->
+      <div class="mapa-card">
+        <div class="mapa-placeholder">
+          <div class="mapa-pin">&#128205;</div>
+          <div class="mapa-label">Calle del Mercado 14<br>Madrid 28012</div>
+        </div>
+      </div>
+
+      <!-- Datos -->
+      <div class="contacto-datos">
+        <div class="contacto-dato">
+          <div class="contacto-dato-icon">&#128222;</div>
+          <div>
+            <div class="contacto-dato-titulo">Telefono</div>
+            <a href="tel:+34912345678" class="contacto-dato-valor">+34 91 234 56 78</a>
           </div>
         </div>
-        <div class="info-item">
-          <div class="info-icon">&#128336;</div>
-          <div class="info-text">
-            <strong>Horario de atencion</strong>
-            <small>Lunes a viernes: 10:00&ndash;22:00</small>
-            <small>Fines de semana: 11:00&ndash;22:00</small>
+        <div class="contacto-dato">
+          <div class="contacto-dato-icon">&#9993;</div>
+          <div>
+            <div class="contacto-dato-titulo">Email</div>
+            <a href="mailto:hola@labrasadorada.es" class="contacto-dato-valor">hola@labrasadorada.es</a>
+          </div>
+        </div>
+        <div class="contacto-dato">
+          <div class="contacto-dato-icon">&#128336;</div>
+          <div>
+            <div class="contacto-dato-titulo">Horario</div>
+            <span class="contacto-dato-valor">L&ndash;V 10:00&ndash;22:00</span><br>
+            <span class="contacto-dato-valor">S&ndash;D 11:00&ndash;22:00</span>
           </div>
         </div>
       </div>
+
+
     </div>
 
   </div>

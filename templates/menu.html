@@ -7,7 +7,7 @@
   <div class="menu-header">
     <p class="section-tag reveal">Nuestra propuesta</p>
     <h2 class="section-title reveal">Menu de <em>temporada</em></h2>
-    <p class="section-lead reveal">Pasa el cursor sobre cada plato para descubrir los detalles.</p>
+    <p class="section-lead reveal">Toca cualquier plato para ver todos los detalles.</p>
 
     <div class="menu-tabs reveal">
       <button class="tab-btn active" onclick="filtrar(event,'todos')">Todos</button>
@@ -20,10 +20,9 @@
 
   <div class="menu-grid" id="menuGrid">
     {% for p in platos %}
-    <div class="menu-card" data-cat="{{ p.categoria }}">
+    <div class="menu-card" data-cat="{{ p.categoria }}"
+         onclick="abrirModal('{{ p.nombre }}','{{ p.descripcion }}','{{ p.detalle }}','{{ p.precio }}','{{ p.alergenos }}','{{ p.imagen }}','{{ p.categoria }}')">
       <div class="menu-card-inner">
-
-        <!-- FRENTE -->
         <div class="menu-front">
           <img class="menu-front-img" src="{{ p.imagen }}" alt="{{ p.nombre }}" loading="lazy">
           <div class="menu-front-body">
@@ -36,8 +35,6 @@
             <div class="flip-hint">&#8635; ver detalle</div>
           </div>
         </div>
-
-        <!-- DORSO -->
         <div class="menu-back">
           <div class="menu-back-ornament">&#10022;</div>
           <div class="menu-back-name">{{ p.nombre }}</div>
@@ -45,12 +42,35 @@
           <div class="menu-back-price">{{ p.precio }}</div>
           <div class="menu-back-allergens">{{ p.alergenos }}</div>
         </div>
-
       </div>
     </div>
     {% endfor %}
   </div>
 </section>
+
+<!-- ═══ MODAL ═══ -->
+<div class="modal-overlay" id="modalOverlay" onclick="cerrarModal(event)">
+  <div class="modal-box">
+    <button class="modal-close" onclick="cerrarModal()">&times;</button>
+    <div class="modal-img-wrap">
+      <img id="modalImg" src="" alt="">
+      <div class="modal-img-gradient"></div>
+      <div class="modal-cat" id="modalCat"></div>
+    </div>
+    <div class="modal-body">
+      <h3 class="modal-name" id="modalName"></h3>
+      <p class="modal-desc" id="modalDesc"></p>
+      <p class="modal-detail" id="modalDetail"></p>
+      <div class="modal-footer">
+        <div class="modal-price" id="modalPrice"></div>
+        <div class="modal-allergens" id="modalAllergens"></div>
+      </div>
+      <a href="/reservas" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:1.5rem;">
+        Reservar mesa
+      </a>
+    </div>
+  </div>
+</div>
 
 <script>
   function filtrar(e, cat) {
@@ -60,6 +80,29 @@
       card.style.display = (cat === 'todos' || card.dataset.cat === cat) ? '' : 'none';
     });
   }
+
+  function abrirModal(nombre, desc, detalle, precio, alergenos, img, cat) {
+    document.getElementById('modalName').textContent      = nombre;
+    document.getElementById('modalDesc').textContent      = desc;
+    document.getElementById('modalDetail').textContent    = detalle;
+    document.getElementById('modalPrice').textContent     = precio;
+    document.getElementById('modalAllergens').textContent = alergenos;
+    document.getElementById('modalCat').textContent       = cat;
+    document.getElementById('modalImg').src               = img;
+    document.getElementById('modalImg').alt               = nombre;
+    const overlay = document.getElementById('modalOverlay');
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function cerrarModal(e) {
+    if (e && e.target !== document.getElementById('modalOverlay') &&
+        !e.target.classList.contains('modal-close')) return;
+    document.getElementById('modalOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') cerrarModal({}); });
 </script>
 
 {% endblock %}
