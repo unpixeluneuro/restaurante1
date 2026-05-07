@@ -76,6 +76,7 @@ nav.scrolled {
 }
 
 .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+.mobile-menu { display: none; }
 
 .nav-links a {
   color: rgba(232,213,183,.7); font-size: .8rem;
@@ -1096,7 +1097,7 @@ footer {
   /* Nav */
   nav { padding: .9rem 1.2rem; }
   nav.scrolled { padding: .7rem 1.2rem; }
-  .nav-logo { font-size: 1.1rem; }
+  .nav-logo { font-size: 1rem; white-space: nowrap; }
 
   /* Overlay oscuro */
   .mobile-overlay {
@@ -1105,8 +1106,11 @@ footer {
   }
   .mobile-overlay.active { display: block; }
 
+  .nav-links { display: none; }
+
   /* Panel — desde la derecha, estilo Aponiente */
   .mobile-menu {
+    display: flex;
     position: fixed; top: 0; right: 0; bottom: 0;
     width: 82%; max-width: 320px;
     background: #1a2030;
