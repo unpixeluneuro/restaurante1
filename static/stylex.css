@@ -1109,7 +1109,7 @@ footer {
   .mobile-menu {
     position: fixed; top: 0; right: 0; bottom: 0;
     width: 82%; max-width: 320px;
-    background: #141820;
+    background: #1a2030;
     padding: 4.5rem 2rem 2rem 2.5rem;
     transform: translateX(100%);
     transition: transform .32s cubic-bezier(.23,1,.32,1);
